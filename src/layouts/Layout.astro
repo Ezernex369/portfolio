@@ -10,14 +10,15 @@ const { title } = Astro.props;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>{title} | Software Developer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>{title} | AI Creative Developer</title>
     <meta
       name="description"
-      content="Oscar Andres Hernandez Pineda - Software Developer building interactive and seamless digital experiences with cutting-edge frontend development."
+      content="James — AI Creative Developer building intelligent, beautiful, and human-centered digital experiences at the intersection of design and machine learning."
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="canonical" href="https://oscarhernandez.vercel.app/" />
+    <link rel="canonical" href="https://jamescreativedev.vercel.app/" />
 
     <link
       rel="preload"
@@ -27,23 +28,27 @@ const { title } = Astro.props;
       crossorigin="anonymous"
     />
 
-    <meta
-      property="og:title"
-      content="Oscar Andres Hernandez Pineda | Software Developer"
-    />
+    <meta property="og:title" content="James | AI Creative Developer" />
     <meta
       property="og:description"
-      content="Portfolio of Oscar Andres Hernandez Pineda, Software Developer specializing in frontend and interactive experiences."
+      content="AI Creative Developer specializing in intelligent interfaces, generative design, and machine learning-powered experiences."
     />
     <meta
       property="og:image"
-      content="https://oscarhernandez.vercel.app/og.image.png"
+      content="https://jamescreativedev.vercel.app/og.image.png"
     />
-    <meta property="og:url" content="https://oscarhernandez.vercel.app" />
+    <meta property="og:url" content="https://jamescreativedev.vercel.app" />
     <meta property="og:type" content="website" />
     <meta
       property="og:site_name"
-      content="Oscar Andres Hernandez Pineda Portfolio"
+      content="James — AI Creative Developer"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="James | AI Creative Developer" />
+    <meta
+      name="twitter:description"
+      content="AI Creative Developer at the intersection of design and machine learning."
     />
 
     <!-- Structured Data (JSON-LD) -->
@@ -51,20 +56,21 @@ const { title } = Astro.props;
       {
         "@context": "https://schema.org",
         "@type": "Person",
-        "name": "Oscar Andres Hernandez Pineda",
-        "alternateName": "Oscar Hernandez",
-        "url": "https://oscarhernandez.vercel.app",
-        "image": "https://oscarhernandez.vercel.app/og.image.png",
+        "name": "James",
+        "alternateName": "James AI Creative",
+        "url": "https://jamescreativedev.vercel.app",
+        "image": "https://jamescreativedev.vercel.app/og.image.png",
         "sameAs": [
-          "https://github.com/gothsec",
-          "https://linkedin.com/in/andresshernandez-eng"
+          "https://github.com/jamescreativedev",
+          "https://linkedin.com/in/jamescreativedev"
         ],
-        "jobTitle": "Software Developer",
-        "description": "Software Developer building interactive and seamless digital experiences."
+        "jobTitle": "AI Creative Developer",
+        "description": "AI Creative Developer building intelligent, beautiful, and human-centered digital experiences."
       }
     </script>
   </head>
   <body class="bg-[--background] sm:px-28 lg:px-20 px-9">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <slot />
   </body>
 </html>
@@ -80,11 +86,26 @@ const { title } = Astro.props;
   }
 
   :root {
-    --background: #101010;
+    --background: #0a0a0f;
+    --surface: #12121c;
+    --surface-hover: #1a1a28;
     --sec: #a476ff;
-    --white: #dfdfdf;
-    --white-icon: #f3f3f398;
-    --white-icon-tr: #f3f3f310;
+    --sec-glow: #a476ff40;
+    --cyan: #00e5ff;
+    --cyan-glow: #00e5ff25;
+    --white: #ededf0;
+    --white-icon: #c4c4cc;
+    --white-icon-tr: #c4c4cc18;
+    --line: #ffffff12;
+    --pink: #ff5eb0;
+    --accent-gradient: linear-gradient(135deg, #a476ff 0%, #00e5ff 100%);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   * {
@@ -103,29 +124,79 @@ const { title } = Astro.props;
     color: var(--background);
   }
 
+  *:focus-visible {
+    outline: 2px solid var(--sec);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Skip to content */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    z-index: 9999;
+    padding: 0.75rem 1.5rem;
+    background: var(--sec);
+    color: var(--background);
+    border-radius: 0 0 0.75rem 0.75rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus {
+    top: 0;
+  }
+
   /* Scrollbar styles */
 
   ::-webkit-scrollbar {
-    width: 15px;
+    width: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--container);
-    border-radius: 30px;
+    background: var(--surface);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--background);
-    border-radius: 10px;
+    background: #2a2a3a;
+    border-radius: 9999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--pink);
+    background: var(--sec);
   }
 
   /* Scrollbar styles for Firefox */
   * {
     scrollbar-width: thin;
-    scrollbar-color: var(--line) var(--container);
+    scrollbar-color: #2a2a3a var(--surface);
+  }
+
+  /* Ambient background mesh */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 10%, #a476ff12 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 80% 90%, #00e5ff0a 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 50% 50%, #a476ff08 0%, transparent 60%);
   }
 </style>
